@@ -1,6 +1,6 @@
 import lottie, { AnimationItem } from "lottie-web";
 import React, { useEffect, useRef } from "react";
-import { LottieAnimationData } from "../interface";
+import { LottieAnimationData } from "../types/interface";
 
 interface LogoAnimationProps {
 	animationData: LottieAnimationData;

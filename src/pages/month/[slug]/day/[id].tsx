@@ -1,17 +1,18 @@
+import { data } from "@/utils/data";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { IoIosArrowRoundBack } from "react-icons/io";
-import { data } from "../../../../utils/data";
-
-import { BsPencil } from "react-icons/bs";
-import { CiCircleRemove } from "react-icons/ci";
 
 export default function DayOfMonth() {
 	const router = useRouter();
 	const month = router.query.slug;
 	const day = router.query.id;
 
-	const monthData = data.find((i) => i.slug === month)?.days.find((i) => i.day === Number(day));
+	const dayData = data
+		.map((i) => i.months)
+		.flat()
+		.find((i) => i.name === month);
+	console.log(dayData);
 
 	return (
 		<div className="px-10 py-1.5">
@@ -50,7 +51,7 @@ export default function DayOfMonth() {
 					</form>
 				</div>
 			</div>
-			<div className="">
+			{/* <div className="">
 				{monthData?.detail.map((i) => (
 					<div key={i.id} className="grid grid-cols-3 px-10 py-5 border-b-2 border-black">
 						<p className="text-2xl font-semibold tracking-wider capitalize flex-center-y">
@@ -69,11 +70,11 @@ export default function DayOfMonth() {
 						</div>
 					</div>
 				))}
-			</div>
+			</div> */}
 			<div className="float-right w-1/4 px-4 py-3 mt-10 bg-white rounded-2xl">
 				<p className="text-2xl font-semibold tracking-wider capitalize">Total</p>
 				<p className="flex justify-end text-xl">
-					{monthData?.total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND
+					{/* {monthData?.total.toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ",")} VND */}
 				</p>
 			</div>
 		</div>

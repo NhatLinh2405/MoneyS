@@ -24,10 +24,17 @@ export interface IDays {
 	detail: IDetail[];
 }
 
-export interface IData {
+export interface IMonths {
 	id: number;
 	name: string;
 	slug: string;
 	total: number;
 	days: IDays[];
+}
+
+export interface IData {
+	id: number;
+	year: number;
+	months: IMonths[];
+	total: number;
 }

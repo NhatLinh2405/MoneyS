@@ -1,4 +1,5 @@
 import convertMonthToNumber from "@/utils/convertMonthToNumber";
+import { data } from "@/utils/data";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 
@@ -15,9 +16,21 @@ export default function Calendar({ month }: IProps) {
 	const [selectedDate, setSelectedDate] = useState<number | null>(null);
 
 	const router = useRouter();
+
+	const monthData = data
+		.map((i) => i.months)
+		.flat()
+		.find((i) => i.name === month)?.days;
+
+	console.log(monthData);
 	if (selectedDate) {
 		router.push(`/month/${month}/day/${selectedDate}`);
 	}
+
+	// const used = data
+	// 	.filter((item) => item.year === year)
+	// 	.map((item) => item.months)
+	// 	.flat();
 
 	const currentDate = new Date();
 
@@ -60,9 +73,9 @@ export default function Calendar({ month }: IProps) {
 		currentMonthCells.push(
 			<div
 				key={`current-${i}`}
-				className={`border-2 cursor-pointer flex-center rounded-xl hover:text-white hover:border-black hover:bg-green-500 border-green-500 p-4 ${
-					selectedDate === i && "bg-blue-500 text-white"
-				}`}
+				className={`border-2 cursor-pointer flex-center rounded-xl hover:text-white hover:border-black hover:bg-green-500 border-green-500 p-4 
+				${monthData?.find((day) => day.day === i) && "bg-green-500 text-white"}	
+				${selectedDate === i && "bg-blue-500 text-white"} `}
 				onClick={() => setSelectedDate(i)}
 				// i don't think i need selected
 			>

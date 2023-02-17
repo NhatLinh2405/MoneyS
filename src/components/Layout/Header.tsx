@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { LottieAnimationData } from "../../interface";
+import { LottieAnimationData } from "../../types/interface";
 import LogoAnimation from "../LogoAnimation";
 
 export default function Header() {
